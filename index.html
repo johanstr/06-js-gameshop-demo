@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#000000" />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Home |Game Shop</title>
+
+  </head>
+  <body>
+    <div class="App">
+        <header>
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <img src="img/eengameshop.png" class="logo-image" />
+                <div class="col-sm-4 offset-md-1 py-4 px-4">
+                    <ul class="list-unstyled float-right">
+                        <li class="nav-shopping-cart" id="shopping-cart-link">
+                            <i class="fas fa-shopping-cart">
+                            </i>
+                            &nbsp;Winkelwagen
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-amount">
+                                0
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row" id="game-list">
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right">
+                    &copy; 2022 by The Sick Dude
+                </p>
+                <p>Een Game Shop, een voorbeeld app voor de lessen Vanilla JavaScript</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="js/index.js"></script>
+  </body>
+</html>
