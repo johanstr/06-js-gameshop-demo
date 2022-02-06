@@ -18,6 +18,7 @@ async function getAllGames()
             .then(response => response.json())
             .then(data => {
                 games = data;
+                localStorage.setItem('games', JSON.stringify(games));
 
                 // Now show all games
                 showGameCards();
