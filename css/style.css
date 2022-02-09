@@ -57,6 +57,17 @@
     width: 50px;
     height: auto;
   }
+
+  #shopping-cart-minus,
+  #shopping-cart-plus {
+    cursor: pointer;
+  }
+
+  #shopping-cart-minus:hover,
+  #shopping-cart-plus:hover {
+    cursor: pointer;
+    color:darkcyan;
+  }
   
   .btn-small {
     font-size: 15px;
