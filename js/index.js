@@ -181,17 +181,17 @@ function handleBuyButtonClick(event)
         winkelwagen.push(item);
     }
 
-    // Stap 3
-    let total_amount = 0;   // Dit is een lokale hulpvariabele
-    
     /*
         We lopen met de method forEach door de winkelwagen heen en 
         tellen per game het aantal op bij de waarde in total_amount
-
+    
         IS DIT WEL EEN GOEDE PLEK VOOR DE ONDERSTAANDE FUNCTIONALITEIT
         OF WAS HET BETER GEWEEST ONDERSTAANDE REGELS IN EEN EIGEN
         FUNCTIE TE PLAATSEN?
-     */
+    */
+    // Stap 3
+    let total_amount = 0;   // Dit is een lokale hulpvariabele
+    
     winkelwagen.forEach((item) => total_amount += item.amount);
     
     // Nu overschijven we de waarde in de badge metde berekende waarde in total_amount 
