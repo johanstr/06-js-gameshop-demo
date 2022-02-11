@@ -196,4 +196,6 @@ function handleBuyButtonClick(event)
     
     // Nu overschijven we de waarde in de badge metde berekende waarde in total_amount 
     shopping_cart_badge.innerHTML = total_amount;
+
+    localStorage.setItem('winkelwagen', JSON.stringify(winkelwagen));
 }
