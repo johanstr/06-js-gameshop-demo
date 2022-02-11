@@ -1,3 +1,11 @@
+/**
+ * VRAAG:
+ * ======
+ * Stel de pagina wordt herladen op de een of andere manier, de localstorage 
+ * is voor het herladen al gevuld met een aantal games, wat gebeurd er dan
+ * met de vorige inhoud van de winkelwagen na het herladen?
+ */
+
 // Winkelwagen data structuur
 let winkelwagen = [];
 
@@ -116,33 +124,76 @@ function showGames()
     });
 }
 
+/**
+ * Deze functie handelt een klik op de KOPEN-button af
+ * Wat doet deze functie wanneer er geklikt wordt:
+ * Stap 1a.     Eerst controleren of er al iets in de winkelwagen zit
+ * Stap 1b.     Zo ja, dan zoeken we of in de winkelwagen of de game er al in zit en
+ *              geven we de index waarde terug als dat zo is
+ * 
+ * Stap 2a.     We controleren op basis van de index waarde of de game
+ *              al in de winkelwagen zit.
+ * Stap 2b.     Zo ja, dan verhogen we alleen het aantal in de winkelwagen.
+ * Stap 2c.     Zo nee, dan voegen we de game als nog toe aan de winkelwagen en zetten
+ *              het aantal op 1
+ * 
+ * Stap 3.      We laten het juiste aantal producten/items zien in de badge van de
+ *              winkelwagen link in de header.
+ * @param {informatie over het event gevuld door de browser} event 
+ */
 function handleBuyButtonClick(event)
 {
+    /**
+     * Iedere button-tag heeft een data-..... attribuut waarin de game_id zit
+     * Deze halen we hieronder binnen in een lokale variabele
+     */
     let game_id = event.target.dataset.game_id;
+    /**
+     * We zetten de index waarde standaard op -1, wat betekent 'NIKS GEVONDEN'
+     */
     let index = -1;
 
-    // Stap 1 - Controleren of de game met de gegeven ID al in de array winkelwagen
-    if(winkelwagen.length > 0) {
-        index = winkelwagen.findIndex( item => {
-            return item.id === game_id;
-        });
+    // Stap 1a
+    if (winkelwagen.length > 0) {
+        // Stap 1b
+        // Als de game al in de winkelwagen zit vullen we hier de lokale variabel index
+        // met de juiste waarde, anders blijft deze -1
+        index = winkelwagen.findIndex( item => item.id === game_id );
     }
 
+    // Stap 2a
     if(index > -1) {
-        // Stap 2
+        // Stap 2b
         winkelwagen[index].amount++;
     } else {
-        // Stap 3
+        // Stap 2c
+
+        /**
+         * We maken een oject voor de winkelwagen
+         * en vullen deze met de game_id uit de data-.... attribuut van de button
+         */
         let item = {
             id: game_id,
             amount: 1
         };
 
+        // Nu voegen we dit object aan het eind van de winkelwagen array toe
         winkelwagen.push(item);
     }
 
-    // Stap 4 - We gaan daarna de badge gaan we het aantal bijwerken
-    let total_amount = 0;
-    winkelwagen.forEach( (item) => total_amount += item.amount);
+    // Stap 3
+    let total_amount = 0;   // Dit is een lokale hulpvariabele
+    
+    /*
+        We lopen met de method forEach door de winkelwagen heen en 
+        tellen per game het aantal op bij de waarde in total_amount
+
+        IS DIT WEL EEN GOEDE PLEK VOOR DE ONDERSTAANDE FUNCTIONALITEIT
+        OF WAS HET BETER GEWEEST ONDERSTAANDE REGELS IN EEN EIGEN
+        FUNCTIE TE PLAATSEN?
+     */
+    winkelwagen.forEach((item) => total_amount += item.amount);
+    
+    // Nu overschijven we de waarde in de badge metde berekende waarde in total_amount 
     shopping_cart_badge.innerHTML = total_amount;
 }
