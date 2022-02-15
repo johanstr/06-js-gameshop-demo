@@ -7,7 +7,8 @@
 let winkelwagen = [];
 let games = [];
 let table_body = document.querySelector('#shopping-cart-table');
-
+let minus_buttons = [];
+let plus_buttons = [];
 
 window.onload = function () {
     loadData();
@@ -22,6 +23,7 @@ window.onload = function () {
         table_body.innerHTML = table_row;
     } else {
         showShoppingCart();
+        activateEventHandlers();
     }
 };
 
@@ -38,7 +40,7 @@ function showShoppingCart()
 {
     winkelwagen.forEach((item) => {
 
-        let index = games.findIndex((game) => game.id === item.id);
+        let index = games.findIndex((game) => game.id == item.id);
         
         let game = {};
 
@@ -61,16 +63,16 @@ function showShoppingCart()
                 </td>
                 <td class="text-center">
                     <!-- Onderstaande icon moeten we op kunnen klikken -->
-                    <i id="shopping-cart-minus" class="fa-solid fa-circle-minus" data-game_id="${game.id}"></i>
-                    <span id="shopping-cart-amount" class="ml-2 mr-2">${item.amount}</span>
+                    <button data-game_id="${game.id}">-</button>
+                    <span class="ml-2 mr-2">${item.amount}</span>
                     <!-- Onderstaande icon moeten we op kunnen klikken -->
-                    <i id="shopping-cart-plus" class="fa-solid fa-circle-plus" data-game_id="${game.id}"></i>
+                    <button data-game_id="${game.id}">+</button>
                 </td>
-                <td id="game-price" class="text-right">&euro; ${game.price}</td>
-                <td id="game-total" class="text-right">&euro; ${total.toFixed(2)}</td>
+                <td class="text-right">&euro; ${game.price}</td>
+                <td class="text-right">&euro; ${total.toFixed(2)}</td>
                 <td class="text-center">
                     <!-- Op onderstaande button moeten we kunnen klikken -->
-                    <button id="shopping-cart-delete-btn" class="btn btn-danger btn-sm" data-game_id="${game.id}">
+                    <button class="btn btn-danger btn-sm" data-game_id="${game.id}">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </td>
@@ -80,4 +82,57 @@ function showShoppingCart()
             table_body.innerHTML += table_row;
         }
     });
+}
+
+function activateEventHandlers()
+{
+    minus_buttons = document.querySelectorAll('#shopping-cart-table tr td:nth-child(2) button:first-child');
+    plus_buttons = document.querySelectorAll('#shopping-cart-table tr td:nth-child(2) button:last-child');
+    
+    minus_buttons.forEach( button => {
+        button.addEventListener('click', decreaseAmount);
+    });
+    plus_buttons.forEach( button => {
+        button.addEventListener('click', increaseAmount);
+    });
+}
+
+function decreaseAmount(event)
+{
+    let total = 0.0;
+    let element_total = event.target.parentElement.parentElement.children[3];   // 4e td
+    let element_amount = event.target.parentElement.children[1];    // span
+    let game_id = event.target.dataset.game_id;
+    let item_index = winkelwagen.findIndex(item => item.id == game_id);
+    let game_index = games.findIndex(game => game.id == game_id);
+
+    if(item_index > -1) {
+        if(winkelwagen[item_index].amount > 1) {
+            winkelwagen[item_index].amount--;
+
+            total = parseFloat(games[game_index].price) * parseFloat(winkelwagen[item_index].amount); 
+            element_total.innerHTML = `&euro; ${total.toFixed(2)}`;
+            element_amount.innerHTML = winkelwagen[item_index].amount;
+        }
+    }
+
+
+}
+
+function increaseAmount(event)
+{
+    let total = 0.0;
+    let element_total = event.target.parentElement.parentElement.children[3];
+    let element_amount = event.target.parentElement.children[1];
+    let game_id = event.target.dataset.game_id;
+    let item_index = winkelwagen.findIndex(item => item.id == game_id);
+    let game_index = games.findIndex(game => game.id == game_id);
+
+    if(item_index > -1) {        
+        winkelwagen[item_index].amount++;
+
+        total = parseFloat(games[game_index].price) * parseFloat(winkelwagen[item_index].amount); 
+        element_total.innerHTML = `&euro; ${total.toFixed(2)}`;
+        element_amount.innerHTML = winkelwagen[item_index].amount;
+    }
 }
