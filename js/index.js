@@ -22,6 +22,9 @@ let gamecard_container = document.querySelector('#game-list');
 
 let games = [];
 
+/**
+ * @TODO Alleen games via API binnenhalen wanneer deze nog niet in de localstorage zijn opgeslagen
+ */
 window.onload = function () {
     loadGames();
 };
