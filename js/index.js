@@ -6,6 +6,10 @@
  * met de vorige inhoud van de winkelwagen na het herladen?
  */
 
+/**
+ * @TODO 1. Controle of er al een winkelwagen in de localstorage zit, zo ja dan info op scherm updaten
+ */
+
 // Winkelwagen data structuur
 let winkelwagen = [];
 

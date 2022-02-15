@@ -3,6 +3,12 @@
  * =======
  * Winkelwagen management.
  * Klanten kunnen hier hun winkelwagen beheren.
+ */
+
+/**
+ * @TODO 1. Delete button implementatie
+ * @TODO 2. Localstorage updates na wijzigingen
+ * @TODO 3. Badge in header steeds updaten na iedere wijziging
 */
 let winkelwagen = [];
 let games = [];
@@ -94,6 +100,10 @@ function activateEventHandlers()
     });
 }
 
+/**
+ * @TODO Winkelwagen update nog doorvoeren naar de localstorage
+ * @TODO Badge in header updaten
+ */
 function decreaseAmount(event)
 {
     let total = 0.0;
@@ -120,6 +130,10 @@ function decreaseAmount(event)
 
 }
 
+/**
+ * @TODO Winkelwagen update nog doorvoeren in de localstorage
+ * @TODO Badge in header updaten
+ */
 function increaseAmount(event)
 {
     let total = 0.0;
