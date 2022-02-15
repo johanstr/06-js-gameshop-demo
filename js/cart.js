@@ -62,16 +62,13 @@ function showShoppingCart()
                     <span class="game-title">${game.title}</span>
                 </td>
                 <td class="text-center">
-                    <!-- Onderstaande icon moeten we op kunnen klikken -->
                     <button data-game_id="${game.id}">-</button>
                     <span class="ml-2 mr-2">${item.amount}</span>
-                    <!-- Onderstaande icon moeten we op kunnen klikken -->
                     <button data-game_id="${game.id}">+</button>
                 </td>
                 <td class="text-right">&euro; ${game.price}</td>
                 <td class="text-right">&euro; ${total.toFixed(2)}</td>
                 <td class="text-center">
-                    <!-- Op onderstaande button moeten we kunnen klikken -->
                     <button class="btn btn-danger btn-sm" data-game_id="${game.id}">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
@@ -100,15 +97,19 @@ function activateEventHandlers()
 function decreaseAmount(event)
 {
     let total = 0.0;
-    let element_total = event.target.parentElement.parentElement.children[3];   // 4e td
-    let element_amount = event.target.parentElement.children[1];    // span
+    let element_total = document.querySelector('#shopping-cart-table tr td:nth-child(4)');
+    let element_amount = event.target.parentElement.children[1];
     let game_id = event.target.dataset.game_id;
     let item_index = winkelwagen.findIndex(item => item.id == game_id);
     let game_index = games.findIndex(game => game.id == game_id);
 
+    console.log(event);
+
     if(item_index > -1) {
+        console.log('Index > -1');
         if(winkelwagen[item_index].amount > 1) {
             winkelwagen[item_index].amount--;
+            console.log(winkelwagen[item_index]);
 
             total = parseFloat(games[game_index].price) * parseFloat(winkelwagen[item_index].amount); 
             element_total.innerHTML = `&euro; ${total.toFixed(2)}`;
@@ -122,8 +123,8 @@ function decreaseAmount(event)
 function increaseAmount(event)
 {
     let total = 0.0;
-    let element_total = event.target.parentElement.parentElement.children[3];
-    let element_amount = event.target.parentElement.children[1];
+    let element_total = document.querySelector('#shopping-cart-table tr td:nth-child(4)');
+    let element_amount = document.querySelector('#shopping-cart-table tr td:nth-child(2) span');
     let game_id = event.target.dataset.game_id;
     let item_index = winkelwagen.findIndex(item => item.id == game_id);
     let game_index = games.findIndex(game => game.id == game_id);
