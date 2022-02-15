@@ -165,7 +165,7 @@ function handleBuyButtonClick(event)
         // Stap 1b
         // Als de game al in de winkelwagen zit vullen we hier de lokale variabel index
         // met de juiste waarde, anders blijft deze -1
-        index = winkelwagen.findIndex( item => item.id === game_id );
+        index = winkelwagen.findIndex( item => item.id == game_id );
     }
 
     // Stap 2a
