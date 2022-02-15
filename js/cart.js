@@ -37,12 +37,8 @@ function loadData()
 function showShoppingCart()
 {
     winkelwagen.forEach((item) => {
-        // Hieronder hadden we de vergelijking game.id === item.id
-        // Maar deze werkt niet omdat game.id van het type int is en item.id van het type string
-        // Drie is-tekens vergelijkt niet alleen de waarde maar ook het type
-        // Daarom moeten we hier twee is-tekens plaatsen
-        // Of we veranderen de voorwaarde in: parseInt(game.id) === parseInt(item.id)
-        let index = games.findIndex((game) => game.id == item.id);
+
+        let index = games.findIndex((game) => game.id === item.id);
         
         let game = {};
 
