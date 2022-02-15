@@ -87,3 +87,9 @@
 .card-text {
   min-height: 120px;
 }
+
+
+/* Bootstrap aanpassing */
+.table td, .table th {
+  vertical-align: middle !important;
+}
